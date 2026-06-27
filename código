@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cidadania Digital & IA</title>
+    <style>
+        /* ==========================================================================
+           1. CONFIGURAÇÕES GERAIS E CORES
+           ========================================================================== */
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --bg-color: #f4f6f7;
+            --text-color: #333;
+            --card-bg: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            text-align: center;
+            padding: 2.5rem 1rem;
+        }
+
+        header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* ==========================================================================
+           2. MENU DE ABAS (NAVEGAÇÃO)
+           ========================================================================== */
+        .tab-menu {
+            display: flex;
+            justify-content: center;
+            background-color: #fff;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .tab-btn {
+            background: none;
+            border: none;
+            padding: 1rem 1.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #666;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+        }
+
+        .tab-btn:hover {
+            color: var(--secondary-color);
+        }
+
+        .tab-btn.active {
+            color: var(--secondary-color);
+            border-bottom: 3px solid var(--secondary-color);
+        }
+
+        /* ==========================================================================
+           3. CONTEÚDO PRINCIPAL E LAYOUT
+           ========================================================================== */
+        .container {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        /* Controle de visibilidade das abas (Mágica do JS) */
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Componentes de texto e Cards */
+        h2 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        h3 {
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        p {
+            margin-bottom: 1.2rem;
+        }
+
+        ul {
+            margin-left: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            margin-top: 1rem;
+        }
+
+        .bg-blue {
+            background-color: #e8f4f8;
+            border-left: 5px solid var(--secondary-color);
+        }
+
+        .alerta {
+            background-color: #fadbd8;
+            border-left: 5px solid var(--accent-color);
+            padding: 1rem;
+            border-radius: 4px;
+            margin-top: 1rem;
+        }
+
+        /* Grid de segurança */
+        .grid-seguranca {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        /* Interatividade do Quiz */
+        .quiz-option {
+            display: block;
+            width: 100%;
+            background-color: #fff;
+            border: 2px solid #ddd;
+            padding: 1rem;
+            margin: 0.5rem 0;
+            border-radius: 6px;
+            text-align: left;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .quiz-option:hover {
+            background-color: #f0f0f0;
+        }
+
+        .feedback-box {
+            padding: 1rem;
+            border-radius: 6px;
+            margin-top: 1rem;
+            font-weight: bold;
+        }
+
+        .feedback-box.correct {
+            background-color: #d4edda;
+            color: #155724;
+        }
+
+        .feedback-box.incorrect {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 1.5rem;
+            background-color: var(--primary-color);
+            color: white;
+            font-size: 0.9rem;
+            margin-top: 4rem;
+        }
+
+        /* Responsividade para Celulares */
+        @media (max-width: 600px) {
+            .tab-menu {
+                flex-direction: column;
+            }
+            .tab-btn {
+                text-align: center;
+                border-bottom: none;
+                border-left: 3px solid transparent;
+            }
+            .tab-btn.active {
+                border-left: 3px solid var(--secondary-color);
+                border-bottom: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Cidadania Digital &amp; Inteligência Artificial</h1>
+        <p>O Impacto das Deepfakes e da Desinformação na Sociedade</p>
+    </header>
+
+    <nav class="tab-menu">
+        <button class="tab-btn active" onclick="openTab(event, 'inicio')">Início</button>
+        <button class="tab-btn" onclick="openTab(event, 'deepfakes')">Deepfakes</button>
+        <button class="tab-btn" onclick="openTab(event, 'fakenews')">Fake News &amp; IA</button>
+        <button class="tab-btn" onclick="openTab(event, 'seguranca')">Guia de Segurança</button>
+        <button class="tab-btn" onclick="openTab(event, 'quiz')">Teste seus Conhecimentos</button>
+    </nav>
+
+    <main class="container">
+
+        <section id="inicio" class="tab-content active">
+            <h2>Bem-vindo ao Portal de Conscientização Digital</h2>
+            <p>A tecnologia avança rápido, e a forma como consumimos informação mudou. Hoje, a Inteligência Artificial pode criar realidades que não existem. Navegue pelas abas acima para aprender a se proteger e a usar a internet de forma consciente e segura!</p>
+            <div class="card bg-blue">
+                <h3>O que é Cidadania Digital?</h3>
+                <p>É o uso consciente, responsável e ético da tecnologia. Ser um bom cidadão digital significa proteger seus dados, respeitar o próximo e saber filtrar o que é real do que é inventado.</p>
+            </div>
+        </section>
+
+        <section id="deepfakes" class="tab-content">
+            <h2>O que são Deepfakes?</h2>
+            <p>Deepfakes são vídeos, áudios ou imagens gerados por Inteligência Artificial que imitam perfeitamente o rosto e a voz de pessoas reais, fazendo-as dizer ou fazer coisas que nunca aconteceram.</p>
+            
+            <h3>Como identificar uma Deepfake?</h3>
+            <ul>
+                <li><strong>Piscadas irreais:</strong> Muitas vezes os olhos não piscam naturalmente.</li>
+                <li><strong>Falhas nos detalhes:</strong> Preste atenção nas orelhas, óculos e cabelo; a IA costuma borrar essas áreas.</li>
+                <li><strong>Sincronia labial:</strong> Veja se a voz combina perfeitamente com os movimentos da boca.</li>
+                <li><strong>Iluminação estranha:</strong> Sombras ou reflexos que parecem fora do lugar.</li>
+            </ul>
+        </section>
+
+        <section id="fakenews" class="tab-content">
+            <h2>Os Perigos das Fake News Automatizadas</h2>
+            <p>Com a IA, criar e espalhar notícias falsas ficou mais rápido e em escala massiva. Robôs (bots) conseguem inundar as redes sociais com informações distorcidas em segundos, gerando pânico ou manipulando opiniões.</p>
+            
+            <div class="alerta">
+                <strong>Lembre-se:</strong> Recebeu uma notícia bombástica com tom alarmista? Não compartilhe antes de checar em fontes confiáveis.
+            </div>
+        </section>
+
+        <section id="seguranca" class="tab-content">
+            <h2>Boas Práticas de Segurança na Internet</h2>
+            <p>Proteger-se no ambiente digital é um dever e um direito de todos. Siga estas regras de ouro:</p>
+            <div class="grid-seguranca">
+                <div class="card">
+                    <h4>1. Senhas Fortes</h4>
+                    <p>Use combinações de letras maiúsculas, minúsculas, números e símbolos. Nada de "123456" ou sua data de nascimento.</p>
+                </div>
+                <div class="card">
+                    <h4>2. Verificação em Duas Etapas</h4>
+                    <p>Ative o 2FA em todas as suas redes sociais e e-mails. É uma camada extra de proteção crucial.</p>
+                </div>
+                <div class="card">
+                    <h4>3. Cuidado com Links</h4>
+                    <p>Não clique em links suspeitos recebidos por SMS, WhatsApp ou e-mail, mesmo que venham de amigos.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="quiz" class="tab-content">
+            <h2>Teste seus Conhecimentos</h2>
+            <p>Será que você consegue identificar uma cilada digital? Responda rápido:</p>
+            
+            <div id="quiz-container">
+                <div class="question">
+                    <p><strong>Pergunta:</strong> Você recebeu um vídeo de um famoso fazendo uma revelação absurda, mas percebeu que a voz dele está um pouco robótica e os dentes parecem estranhos. O que você faz?</p>
+                    <button class="quiz-option" onclick="checkAnswer(true)">Desconfio na hora, pesquiso em sites de notícias e não compartilho.</button>
+                    <button class="quiz-option" onclick="checkAnswer(false)">Compartilho no grupo da escola, afinal, o vídeo parece muito real.</button>
+                </div>
+                <div id="quiz-feedback" class="feedback-box hidden"></div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 - Projeto Escolar de Cidadania Digital. Feito com fins educativos.</p>
+    </footer>
+
+    <script>
+        // ==========================================================================
+        // 4. LÓGICA JAVASCRIPT (INTERATIVIDADE)
+        // ==========================================================================
+
+        // Função para alternar entre as abas do site
+        function openTab(event, tabId) {
+            // Esconder todos os conteúdos de abas
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(content => {
+                content.classList.remove('active');
+            });
+
+            // Remover a classe 'active' de todos os botões do menu
+            const tabButtons = document.querySelectorAll('.tab-btn');
+            tabButtons.forEach(button => {
+                button.classList.remove('active');
+            });
+
+            // Mostrar o conteúdo da aba atual e marcar o botão como ativo
+            document.getElementById(tabId).classList.add('active');
+            event.currentTarget.classList.add('active');
+        }
+
+        // Função para validar a resposta do Quiz rápido
+        function checkAnswer(isCorrect) {
+            const feedbackBox = document.getElementById('quiz-feedback');
+            feedbackBox.classList.remove('hidden', 'correct', 'incorrect');
+            
+            if (isCorrect) {
+                feedbackBox.textContent = "Parabéns, você acertou! Desconfiar e verificar em fontes confiáveis é o primeiro passo para combater a desinformação digital.";
+                feedbackBox.classList.add('correct');
+            } else {
+                feedbackBox.textContent = "Atenção! Compartilhar sem checar espalha o problema. Na dúvida, segure o dedo e não envie.";
+                feedbackBox.classList.add('incorrect');
+            }
+        }
+    </script>
+</body>
+</html>
