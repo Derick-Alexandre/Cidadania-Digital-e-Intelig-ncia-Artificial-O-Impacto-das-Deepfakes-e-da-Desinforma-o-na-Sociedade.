@@ -1,3 +1,5 @@
 # Cidadania-Digital-e-Intelig-ncia-Artificial-O-Impacto-das-Deepfakes-e-da-Desinforma-o-na-Sociedade.
 O objetivo é conscientizar a comunidade escolar sobre como identificar mídias manipuladas por IA (deepfakes), os perigos  das fake news automatizadas e boas práticas de segurança na internet.
+
+chat com IA:
 https://gemini.google.com/app/36e4ded12ef1a32d?is_sa=1&is_sa=1&android-min-version=301356232&ios-min-version=322.0&campaign_id=bkws&utm_source=sem&utm_medium=paid-media&utm_campaign=bkws&pt=9008&mt=8&ct=p-growth-sem-bkws&gclsrc=aw.ds&gad_source=1&gad_campaignid=20437330524&gbraid=0AAAAApk5BhkrkBHIYEAd43rgTNd2CfKU1&gclid=CjwKCAjw6f3RBhApEiwAMaCqWaYH8Slllozo13ZCAcN1zSthY_5EHvSMw1i2NIumZONNdkZpfzsWTBoCWVwQAvD_BwE
